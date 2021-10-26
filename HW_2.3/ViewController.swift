@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  HW_2.3
 //
-//  Created by Beelab_ on 26/10/21.
+//  Created by YaYuVengerskiy on 26/10/21.
 //
 
 import UIKit
