@@ -12,33 +12,34 @@ class ViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var usernameInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     
+    private let correctUsername = "User"
+    private let correctPassword = "Password"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordInput.delegate = self
         usernameInput.delegate = self
         usernameInput.returnKeyType = .next
         passwordInput.returnKeyType = .done
+        passwordInput.enablesReturnKeyAutomatically = true
     }
     
     @IBAction func loginButtonPressed() {
-                    if usernameInput.text != "User" ||
-                        passwordInput.text != "Password" {
+                    if usernameInput.text != correctUsername ||
+                        passwordInput.text != correctPassword {
                         
                         passwordInput.text = ""
                         showAlert(title: "Incorrect User name or Password! 🤬 ",
-                                  message: "Please, enter correct Username or password")
+                                  message: "Please, enter correct Username and password")
                     }
                 }
                 
     @IBAction func forgotUserNameButtonPressed() {
-                    // create the alert
-                    showAlert(title: "Ooops!",
-                              message: "Your name is User 😉 ")
+                    showAlert(title: "Ooops!", message: "Your name is \(correctUsername) 😉 ")
                 }
                 
     @IBAction func forgotPasswordButtonPressed() {
-                    showAlert(title: "Ooops!",
-                              message: "Your password is Password 🥴")
+                    showAlert(title: "Ooops!", message: "Your password is \(correctPassword) 🥴")
                 }
     @IBAction func unwind(for segue: UIStoryboardSegue) {
                     usernameInput.text = ""
@@ -49,7 +50,6 @@ class ViewController: UIViewController, UITextFieldDelegate{
     internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //переносим курсор в поле пароля при нажатии на "Next"
         if textField == usernameInput {
-            usernameInput.resignFirstResponder()
             passwordInput.becomeFirstResponder()
         }
         // Скрываем клавиатуру нажатием на "Done"
