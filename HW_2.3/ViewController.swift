@@ -56,7 +56,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         if textField == passwordInput {
             passwordInput.resignFirstResponder()
         }
-        return false
+        return true
     }
     
     // Скрытие клавиатуры по тапу за пределами Text View
