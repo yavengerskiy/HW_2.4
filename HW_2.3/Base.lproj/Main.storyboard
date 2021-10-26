@@ -48,6 +48,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="LOG IN"/>
                                         <connections>
+                                            <action selector="loginButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="h8R-Uw-jwO"/>
                                             <segue destination="Vtg-Vi-Ar4" kind="presentation" modalPresentationStyle="fullScreen" id="BKC-jm-Lxe"/>
                                         </connections>
                                     </button>
@@ -93,6 +94,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pCn-DJ-xHL"/>
+                    <connections>
+                        <outlet property="passwordInput" destination="M1r-d2-i3G" id="f1l-au-125"/>
+                        <outlet property="usernameInput" destination="Ra1-c8-kXg" id="ZvZ-Ai-xCM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
