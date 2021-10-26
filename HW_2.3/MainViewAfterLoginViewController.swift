@@ -11,13 +11,10 @@ class MainViewAfterLoginViewController: UIViewController {
 
     @IBOutlet weak var welcomeLabel: UILabel!
     
+    var welcomeLabelText: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        welcomeLabel.text = welcomeLabelText
     }
-    
-    @IBAction func loguotButtonPressed() {
-        dismiss(animated: true)
-    }
-    
-
 }

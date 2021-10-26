@@ -125,7 +125,7 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="loguotButtonPressed" destination="Vtg-Vi-Ar4" eventType="touchUpInside" id="wFz-xb-RM3"/>
+                                    <segue destination="bFU-Gi-7vp" kind="unwind" unwindAction="unwindFor:" id="wss-rf-WE4"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CP8-5U-7y5">
@@ -152,6 +152,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SgF-lx-31N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="bFU-Gi-7vp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1595.3271028037382" y="83.585313174946009"/>
         </scene>

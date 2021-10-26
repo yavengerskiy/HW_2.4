@@ -30,6 +30,15 @@ class ViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            guard let mainViewafterLogInVC = segue.destination as? MainViewAfterLoginViewController else { return }
+        mainViewafterLogInVC.welcomeLabelText = "Welcome, \(usernameInput.text ?? "")!"
+        }
+        
+    @IBAction func unwind(for segue: UIStoryboardSegue) {
+            usernameInput.text = ""
+            passwordInput.text = ""
+        }
 
     @IBAction func loginButtonPressed() {
         if usernameInput.text != "User" &&
@@ -37,7 +46,7 @@ class ViewController: UIViewController {
             
             passwordInput.text = ""
             showAlert(title: "Incorrect User name or Password! 🤬 ",
-                      message: "Please try again",
+                      message: "Please, enter correct Username or password",
                       textButton: "OK")
         }
     }
