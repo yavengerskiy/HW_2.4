@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate{
 
+    private  let  user = User()
+    
     @IBOutlet weak var usernameInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     
@@ -22,17 +24,22 @@ class ViewController: UIViewController, UITextFieldDelegate{
         usernameInput.returnKeyType = .next
         passwordInput.returnKeyType = .done
         passwordInput.enablesReturnKeyAutomatically = true
+        user.configureUser()
     }
     
     @IBAction func loginButtonPressed() {
-                    if usernameInput.text != correctUsername ||
-                        passwordInput.text != correctPassword {
-                        
-                        passwordInput.text = ""
-                        showAlert(title: "Incorrect User name or Password! 🤬 ",
-                                  message: "Please, enter correct Username and password")
-                    }
-                }
+        guard let userLogin = usernameInput.text else {return}
+        guard let userPassword = passwordInput.text else {return}
+        
+        if userLogin == user.login && userPassword == user.password {
+            performSegue(withIdentifier: "showWelcome", sender: UIButton.self)
+        } else {
+            showAlert(title: "Incorrect User name or Password! 🤬 ",
+                      message: "Please, enter correct Username and password")
+            passwordInput.text = nil
+        }
+        
+    }
                 
     @IBAction func forgotUserNameButtonPressed() {
                     showAlert(title: "Ooops!", message: "Your name is \(correctUsername) 😉 ")
@@ -42,8 +49,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
                     showAlert(title: "Ooops!", message: "Your password is \(correctPassword) 🥴")
                 }
     @IBAction func unwind(for segue: UIStoryboardSegue) {
-                    usernameInput.text = ""
-                    passwordInput.text = ""
+                    usernameInput.text = nil
+                    passwordInput.text = nil
                 }
     
     
@@ -72,12 +79,28 @@ class ViewController: UIViewController, UITextFieldDelegate{
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
 
         // отображаем алерт
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            guard let mainViewafterLogInVC = segue.destination as? MainViewAfterLoginViewController else { return }
-        mainViewafterLogInVC.welcomeLabelText = "Welcome, \(usernameInput.text ?? "")!"
+        
+        guard let tabBarController = segue.destination as? UITabBarController else {return}
+        guard let tabBarControllers = tabBarController.viewControllers else {return}
+        
+        for viewController in tabBarControllers {
+            
+            switch viewController {
+            case is MainViewAfterLoginViewController:
+                let destController = viewController as! MainViewAfterLoginViewController
+                destController.user = user
+            case is SkillsController:
+                let destController = viewController as! SkillsController
+                destController.skills = user.skills
+            default:
+                break
+            }
+            
         }
+    }
 }
 
